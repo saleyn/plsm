@@ -34,7 +34,7 @@ defimpl Plsm.Database, for: Plsm.Database.PostgreSQL do
     {_, result} =
       Postgrex.query(
         db.connection,
-        "SELECT table_name FROM information_schema.tables WHERE table_schema = '#{db.schema}' and table_name != 'schema_migrations';",
+        "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' and table_schema = '#{db.schema}' and table_name != 'schema_migrations';",
         []
       )
 
