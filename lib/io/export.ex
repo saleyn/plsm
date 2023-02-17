@@ -136,8 +136,8 @@ defmodule Plsm.IO.Export do
 
     trimmed_columns = remove_foreign_keys(table.columns, table.header.name)
 
-    max_name_wid = Enum.map(trimmed_columns, &byte_size(str(&1.name))) |> Enum.max()
-    max_type_wid = Enum.map(trimmed_columns, &byte_size(str(&1.type))) |> Enum.max()
+    max_name_wid = Enum.map(trimmed_columns, &byte_size(str(&1.name))) |> Enum.max(fn -> 0 end)
+    max_type_wid = Enum.map(trimmed_columns, &byte_size(str(&1.type))) |> Enum.max(fn -> 0 end)
 
     column_output =
       trimmed_columns
